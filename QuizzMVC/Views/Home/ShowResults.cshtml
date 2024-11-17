@@ -1,0 +1,17 @@
+﻿@model QuizzMVC.Models.QuizModel
+
+@{
+    ViewData["Title"] = "Resultados";
+}
+
+
+<head>
+    <!-- Link para o arquivo CSS -->
+    <link href="~/css/Result.css" rel="stylesheet" />
+</head>
+
+<div class="results-container">
+    <h1>Resultados do Quiz</h1>
+    <p>Você acertou @Model.CorrectAnswersCount de @Model.Questions.Count perguntas.</p>
+    <button onclick="window.location.href='@Url.Action("Index", "Home")'">Refazer o Quiz</button>
+</div>

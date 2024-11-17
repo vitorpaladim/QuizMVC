@@ -1,0 +1,82 @@
+﻿@model QuizzMVC.Models.QuizModel
+
+@{
+    ViewData["Title"] = "QuizMVC";
+}
+
+<head>
+    <!-- Link para o arquivo CSS -->
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+
+<div class="quiz-container">
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+        <div class="progress-bar" style="width: @((Model.CurrentQuestionIndex + 1) * 100 / Model.Questions.Count)%"></div>
+    </div>
+    <p>@((Model.CurrentQuestionIndex + 1) * 100 / Model.Questions.Count)% completo</p>
+
+
+    <!-- Pergunta atual -->
+    <h2 class="question-text">@Model.GetCurrentQuestionText()</h2>
+  
+   
+    <div class="question-container">
+        
+       
+        <!-- Formulário para selecionar resposta -->
+        <form method="post" action="@Url.Action("RegisterAnswer", "Home")">
+            <div class="options-list">
+                @if (Model.Questions[Model.CurrentQuestionIndex] is QuizzMVC.Models.MultipleChoiceQuestion mcq)
+                {
+                    <ul>
+                        @for (int i = 0; i < mcq.Options.Length; i++)
+                        {
+                            <li>
+                                <button type="submit" class="option-btn" name="selectedAnswer" value="@mcq.Options[i]">
+                                    @mcq.Options[i]
+                                </button>
+                            </li>
+                        }
+                    </ul>
+                }
+                else if (Model.Questions[Model.CurrentQuestionIndex] is QuizzMVC.Models.TrueFalseQuestion tfq)
+                {
+                    <ul>
+                        <li>
+                            <button type="submit" class="option-btn" name="selectedAnswer" value="Verdadeiro">Verdadeiro</button>
+                        </li>
+                        <li>
+                            <button type="submit" class="option-btn" name="selectedAnswer" value="Falso">Falso</button>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </form>
+    </div>
+
+    <!-- Botões de navegação -->
+    <div class="navigation-buttons">
+        <button class="nav-button" onclick="window.location.href='@Url.Action("PreviousQuestion", "Home")'" @(Model.IsFirstQuestion() ? "disabled" : "")>
+            Anterior
+        </button>
+
+        <button class="nav-button" onclick="window.location.href='@Url.Action("Skip", "Home")'">
+            Pular
+        </button>
+
+        @if (Model.IsLastQuestion())
+        {
+            <button class="nav-button" onclick="window.location.href='@Url.Action("ShowResults", "Home")'">
+                Finalizar
+            </button>
+        }
+        else
+        {
+            <button class="nav-button" onclick="window.location.href='@Url.Action("Index", "Home")'">
+                Próxima
+            </button>
+        }
+    </div>
+</div>

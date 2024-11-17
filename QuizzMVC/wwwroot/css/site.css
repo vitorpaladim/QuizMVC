@@ -1,0 +1,198 @@
+/* Definindo as variáveis no CSS */
+:root {
+    --primary-color: #3D5AFE;
+    --trans-duration: 0.3s;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    height: 100vh;
+    background: #CFD8DC;
+    cursor: default !important;
+    user-select: none;
+    user-drag: none;
+    display: flex;
+    flex-direction: column; /* Organiza em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    margin: 0; /* Remove margem padrão */
+}
+
+.quiz-container {
+    background: #FAFAFA;
+    width: 481px; /* Largura fixa */
+    height: 580px; /* Altura fixa */
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Organiza os itens na vertical */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: flex-start; /* Alinha os itens ao topo, mas no centro da tela */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    overflow: hidden;
+    margin-top: 50%; /* Espaço entre o topo da tela e o contêiner */
+}
+
+
+/* BARRA DE PROGRESSO
+    a fazer _----
+    trocar cor 
+
+*/
+.progress-container {
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5rem;
+}
+
+.progress-bar {
+    border-radius: 5rem;
+    overflow: hidden;
+    border: none;
+    height: 10px;
+    background: #154c79;
+    position: relative;
+
+}
+
+    .progress-bar::after {
+        content: '';
+        background: var(--primary-color);
+        position: absolute;
+        height: 100%;
+        width: 0; /* Será alterado dinamicamente */
+        transition: width var(--trans-duration);
+    }
+
+p {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: #333;
+   
+}
+
+.question-container {
+    margin-top: %;
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.question-text{
+    text-align: left;
+    margin: 25px 30px 10px ;
+    font-size: 18px;
+
+}
+
+.linha-horizontal {
+    border: none; /* Remove a borda padrão */
+    height: 1px; /* Espessura da linha */
+    background-color: #333; /* Cor da linha */
+    margin: 0rem 0; /* Margem acima e abaixo da linha */
+    width: 50%; /* Linha ocupa toda a largura do contêiner */
+}
+
+
+
+/*VITOR- BOTOES CENTRAIS DAS QUESTOES_ INICIO*/
+.option-btn {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 13px;
+    border: 1px solid transparent;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 9px 18px;
+    text-align: center;
+    transition: all var(--trans-duration);
+    margin: 10px 0;
+    width: 390px
+}
+
+    .option-btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .option-btn:active {
+        transform: scaleX(0.9);
+    }
+/*FINAL*/
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between; /* Coloca os botões lado a lado */
+    margin-top: 20px;
+    width: 100%;
+    max-width: 360px; /* Largura máxima dos botões */
+}
+
+.nav-button {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    color: #333;
+    cursor: pointer;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 12px;
+    transition: all var(--trans-duration);
+    margin: 10px 8px; /* Ajuste o espaçamento entre os botões */
+    width: 100px; /* Tamanho fixo para os botões */
+}
+
+    .nav-button:hover {
+        background-color: #154c79;
+        color: #FAFAFA;
+    }
+
+    .nav-button:active {
+        transform: scaleX(0.9);
+    }
+
+    .nav-button.is-active {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: transparent;
+    }
+
+        .nav-button.is-active:hover {
+            background-color: darken(var(--primary-color), 10%);
+        }
+
+@media screen and (min-width: 769px) {
+    .quiz-container {
+        align-items: center;
+        justify-content: flex-start;
+        max-width: 800px; /* Ajuste para telas grandes */
+    }
+
+    .question-container {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .quiz-container {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .navigation-buttons {
+        flex-direction: column; /* Organiza os botões de forma vertical */
+    }
+}
